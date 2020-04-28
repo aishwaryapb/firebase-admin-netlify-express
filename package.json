@@ -1,0 +1,32 @@
+{
+  "name": "to-do-tracker-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "./node_modules/.bin/netlify-lambda serve --config ./config/webpack.functions.js src",
+    "build": "./node_modules/.bin/netlify-lambda build --config ./config/webpack.functions.js src",
+    "deploy": "./node_modules/.bin/netlify deploy --dir=dist --functions=functions -p"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aishwaryapb/firebase-admin-netlify-express.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aishwaryapb/firebase-admin-netlify-express/issues"
+  },
+  "homepage": "https://github.com/aishwaryapb/firebase-admin-netlify-express#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "firebase": "^7.14.2",
+    "firebase-admin": "^8.11.0",
+    "netlify-cli": "^2.48.0",
+    "netlify-lambda": "^1.6.3",
+    "serverless-http": "^2.3.2",
+    "webpack-node-externals": "^1.7.2"
+  }
+}
