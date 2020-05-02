@@ -12,6 +12,18 @@ const tasksRouter = require('./routes/tasks');
 const app = express();
 const router = express.Router();
 
+const allowedOrigin = process.env.ALLOWED_ORIGIN_URL;
+
+const corsOptions = {
+    origin: function (origin, callback) {
+        if (allowedOrigin === origin) {
+            callback(null, true)
+        } else {
+            callback(new Error('Not allowed by CORS'))
+        }
+    }
+}
+
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: process.env.DATABASE_URL
@@ -20,7 +32,7 @@ admin.initializeApp({
 router.use('/categories', categoriesRouter);
 router.use('/tasks', tasksRouter);
 
-app.use(cors())
+app.use(cors(corsOptions))
 app.use(bodyParser.json());
 app.use('/.netlify/functions/api', router);
 
