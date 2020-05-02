@@ -7,7 +7,14 @@ const isAuthenticated = (req, res, next) => {
     }
 
     admin.auth().verifyIdToken(idToken)
-        .then(() => next())
+        .then((decodedToken) => {
+            const { email } = decodedToken;
+            let { user } = req.query.user
+                ? req.query
+                : req.body.user ? req.body : {};
+            if (user && user !== email) return res.status(401).send("Unauthorized")
+            else next()
+        })
         .catch(() => res.status(401).send("Unauthorized"));
 }
 
